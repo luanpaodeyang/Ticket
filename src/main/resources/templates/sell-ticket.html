@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>售票</title>
+    <style>
+        body {
+            background-image: url("/images/back2.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 45px;
+        }
+
+
+        .a1 {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -25px;
+            margin-bottom: -20px;
+        }
+        .a2 {
+            text-decoration: none;
+            transition-duration: 0.3s;
+            border: 2px solid purple;
+            border-radius: 6px;
+            padding: 4px;
+            color: purple;
+            font-size: 15px;
+
+        }
+        .a2:hover {
+            background-color: greenyellow;
+        }
+        table {
+            margin: auto;
+            border: 2px solid black;
+            border-collapse: collapse;
+            margin-top: 50px;
+
+        }
+        td {
+            /*表内容*/
+            text-align: center;
+            font-family: 宋体;
+            font-size: 18px;
+            border: 1px solid black;
+            padding: 10px;
+            font-weight: bolder;
+        }
+        th {
+            /*表头*/
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 黑体;
+        }
+        button {
+            padding: 6px;
+            background-color: transparent;
+            border: 2px solid black;
+            border-radius: 6px;
+            transition-duration: 0.5s;
+            font-size: 20px;
+            font-family: 宋体;
+            font-weight: bolder;
+            margin-left: 293px;
+            margin-top: -50px;
+        }
+        button:hover {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>演唱会票务出售</h1>
+    <button onclick="window.location.href='/index/sell-ticket/show-customer-information'">售票记录查询</button>
+    <a class="a1" th:href="@{/index}">返回主页&emsp;&emsp;</a>
+    <table>
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>演出名称</th>
+            <th>主要演职人员</th>
+            <th>演出时间</th>
+            <th>总票数</th>
+            <th>已售</th>
+            <th>余票</th>
+            <th>价格</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="home : ${homes}">
+            <td th:text="${home.id}"></td>
+            <td th:text="${home.showName}"></td>
+            <td th:text="${home.performers}"></td>
+            <td th:text="${home.showTime}"></td>
+            <td th:text="${home.totalTickets}"></td>
+            <td th:text="${home.soldTickets}"></td>
+            <td th:text="${home.remainingTickets}"></td>
+            <td th:text="${home.price}"></td>
+
+            <td>
+                <a class="a2" th:href="@{'/index/sell-ticket/customer-information/' + ${home.id}}">出售</a>
+            </td>
+
+
+        </tr>
+        </tbody>
+
+</table>
+</body>
+</html>

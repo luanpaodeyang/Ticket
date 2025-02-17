@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改票品数据</title>
+
+    <style>
+        body {
+            background-image: url("/images/back.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 45px;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 字魂60号-梦想手札体;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+        .table1 {
+            margin: auto;
+            border: 2px solid black;
+            border-collapse: collapse;
+
+        }
+        .td1 {
+            /*表内容*/
+            text-align: center;
+            font-family: 宋体;
+            font-size: 18px;
+            border: 1px solid black;
+            padding: 10px;
+            font-weight: bolder;
+        }
+        .th1 {
+            /*表头*/
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 黑体;
+        }
+        .table2,.td2 {
+            border: none;
+            padding: 5px;
+            text-align: left;
+            margin: auto;
+        }
+        label {
+            font-size: 19px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        .divLeft {
+            float: left;
+            width: 65%;
+        }
+
+        .divRight {
+            float: right;
+            width: 35%;
+            display: block;
+            text-align: center;
+        }
+        input {
+            padding: 6px;
+            background-color: transparent;
+            border-radius: 5px;
+            border: 1px solid black;
+            font-size: 16px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        .button1 {
+            border-radius: 6px;
+            border: 2px solid black;
+            background-color: transparent;
+            transition-duration: 0.5s;
+            font-size: 16px;
+            padding: 4px;
+        }
+        .button2 {
+            border-radius: 6px;
+            border: 2px solid black;
+            background-color: transparent;
+            transition-duration: 0.5s;
+            display: block;
+            margin: auto;
+            margin-top: 30px;
+            font-size: 16px;
+            padding: 6px;
+        }
+        button:hover {
+            background-color: aqua;
+        }
+    </style>
+
+
+
+</head>
+<body>
+    <h1>修改票品数据</h1>
+    <a th:href="@{/index/show-list}">取消修改&emsp;&emsp;</a>
+
+    <div class="divLeft">       <!--显示所有票品信息-->
+        <h2>演唱会演出信息</h2>
+        <table class="table1">
+            <thead>
+            <tr>
+                <th class="th1">序号</th>
+                <th class="th1">演出名称</th>
+                <th class="th1">主要演职人员</th>
+                <th class="th1">演出时间</th>
+                <th class="th1">总票数</th>
+                <th class="th1">已售</th>
+                <th class="th1">余票</th>
+                <th class="th1">价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="home : ${homes}">
+                <td class="td1" th:text="${home.id}"></td>
+                <td class="td1" th:text="${home.showName}"></td>
+                <td class="td1" th:text="${home.performers}"></td>
+                <td class="td1" th:text="${home.showTime}"></td>
+                <td class="td1" th:text="${home.totalTickets}"></td>
+                <td class="td1" th:text="${home.soldTickets}"></td>
+                <td class="td1" th:text="${home.remainingTickets}"></td>
+                <td class="td1" th:text="${home.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="divRight">        <!--修改部分-->
+        <h2>票品信息修改</h2>
+        <form th:action="@{/revise}" method="post" th:object="${reviseTicket}">
+            <label>按序号查询:</label>
+            <input type="text" id="reviseId" name="reviseId" th:field="*{id}" required/>&emsp;
+            <button type="submit" class="button1">&nbsp;查找&nbsp;</button>
+            <br><br>
+        </form>
+
+        <!-- 在输入框中显示原数据 -->
+        <form th:action="@{/update}" method="post" th:object="${updatedTicket}">
+            <table class="table2">
+                <!-- 序号 -->
+                <tr>
+                    <td class="td2"><label for="id">序号:</label></td>
+                    <td class="td2"><input type="text" id="id" name="id" th:field="*{id}" readonly/></td>
+                </tr>
+
+                <!-- 演出名称 -->
+                <tr>
+                    <td class="td2"><label for="showName">演出名称:</label></td>
+                    <td class="td2"><input type="text" id="showName" name="showName" th:field="*{showName}" required/></td>
+                </tr>
+
+                <!-- 主要演职人员 -->
+                <tr>
+                    <td class="td2"><label for="performers">主要演职人员:</label></td>
+                    <td class="td2"><input type="text" id="performers" name="performers" th:field="*{performers}" required/></td>
+                </tr>
+
+                <!-- 演出时间 -->
+                <tr>
+                    <td class="td2"><label for="showTime">演出时间:</label></td>
+                    <td class="td2"><input type="text" id="showTime" name="showTime" th:field="*{showTime}" required/></td>
+                </tr>
+
+                <!-- 总票数 -->
+                <tr>
+                    <td class="td2"><label for="totalTickets">总票数:</label></td>
+                    <td class="td2"><input type="text" id="totalTickets" name="totalTickets" th:field="*{totalTickets}" required/></td>
+                </tr>
+
+                <!-- 已售 -->
+                <tr>
+                    <td class="td2"><label for="soldTickets">已售:</label></td>
+                    <td class="td2"><input type="text" id="soldTickets" name="soldTickets" th:field="*{soldTickets}" required/></td>
+                </tr>
+
+                <!-- 余票 -->
+                <tr>
+                    <td class="td2"><label for="remainingTickets">余票:</label></td>
+                    <td class="td2"><input type="text" id="remainingTickets" name="remainingTickets" th:field="*{remainingTickets}" required/></td>
+                </tr>
+
+                <!-- 价格 -->
+                <tr>
+                    <td class="td2"><label for="price">价格:</label></td>
+                    <td class="td2"><input type="text" id="price" name="price" th:field="*{price}" required/></td>
+                </tr>
+
+            </table>
+            <button type="submit" class="button2">&emsp;&emsp;修改&emsp;&emsp;</button>
+        </form>
+    </div>
+
+
+
+</body>
+</html>

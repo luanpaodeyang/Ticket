@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        body {
+            background-image: url("/images/back.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 55px;
+        }
+        a {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+        table,th,td {
+            margin: auto;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        input {
+            padding: 6px;
+            background-color: transparent;
+            border-radius: 5px;
+            border: 1px solid black;
+            font-size: 16px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        button {
+            border-radius: 6px;
+            background-color: transparent;
+            transition-duration: 0.5s;
+            display: block;
+            margin: auto;
+            margin-top: 40px;
+            font-size: 20px;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: aqua;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>管理员注册</h1>
+    <h4><a th:href="@{/index/show-list}">取消注册&emsp;&emsp;</a></h4>
+    <form th:action="@{/add2}" method="post" th:object="${user}">
+        <table>
+            <tr>
+                <td><label for="username">用户名:</label></td>
+                <td><input type="text" id="username" th:field="*{username}"  required/></td>
+            </tr>
+
+            <tr>
+                <td><label for="password">密码:</label></td>
+                <td><input type="password" id="password" th:field="*{password}" required/></td>
+            </tr>
+
+            <tr>
+                <td><label for="invitationCode">邀请码:</label></td>
+                <td><input type="password" id="invitationCode" name="invitationCode" required/></td>
+            </tr>
+
+        </table>
+        <button type="submit">&emsp;&emsp;注册&emsp;&emsp;</button>
+    </form>
+</body>
+</html>

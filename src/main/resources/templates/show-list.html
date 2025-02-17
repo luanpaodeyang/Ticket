@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>演唱会票务信息管理</title>
+    <style>
+        body {
+            background-image: url("/images/back.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 45px;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 字魂60号-梦想手札体;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        a {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+        table {
+            margin: auto;
+            border: 2px solid black;
+            border-collapse: collapse;
+
+        }
+        td {
+            /*表内容*/
+            text-align: center;
+            font-family: 宋体;
+            font-size: 18px;
+            border: 1px solid black;
+            padding: 10px;
+            font-weight: bolder;
+        }
+        th {
+            /*表头*/
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 黑体;
+        }
+        .divLeft {
+            float: left;
+            width: 65%;
+        }
+
+        .divRight {
+            float: right;
+            width: 35%;
+        }
+        p {
+            text-align: center;
+            font-family: 幼圆;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        button {
+            border-radius: 6px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>演唱会票务信息管理</h1>
+    <a th:href="@{/index}">返回首页&emsp;&emsp;</a>
+    <div class="divLeft">
+        <h2>票品列表</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>演出名称</th>
+                <th>主要演职人员</th>
+                <th>演出时间</th>
+                <th>总票数</th>
+                <th>已售</th>
+                <th>余票</th>
+                <th>价格</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!-- 遍历查询结果 -->
+            <tr th:each="home : ${homes}">
+                <td th:text="${home.id}"></td>
+                <td th:text="${home.showName}"></td>
+                <td th:text="${home.performers}"></td>
+                <td th:text="${home.showTime}"></td>
+                <td th:text="${home.totalTickets}"></td>
+                <td th:text="${home.soldTickets}"></td>
+                <td th:text="${home.remainingTickets}"></td>
+                <td th:text="${home.price}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="divRight">
+        <h2>票品信息操作</h2>
+        <p>
+            1、票务信息录入- - - - - -
+            <button onclick="window.location.href='/index/show-list/add-ticket'">录入</button>
+        </p>
+
+        <p>
+           2、票务信息删除- - - - - -
+            <button onclick="window.location.href='/index/show-list/delete-ticket'">删除</button>
+        </p>
+
+        <p>
+            3、票务信息修改- - - - - -
+            <button onclick="window.location.href='/index/show-list/revise-ticket'">修改</button>
+        </p>
+
+    </div>
+</body>
+</html>

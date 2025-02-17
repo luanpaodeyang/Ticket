@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>售票记录</title>
+    <style>
+        body {
+            background-image: url("/images/back2.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 45px;
+        }
+        a {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -25px;
+            margin-bottom: 25px;
+        }
+        table {
+            margin: auto;
+            border: 2px solid black;
+            border-collapse: collapse;
+
+        }
+        td {
+            /*表内容*/
+            text-align: center;
+            font-family: 宋体;
+            font-size: 18px;
+            border: 1px solid black;
+            padding: 10px;
+            font-weight: bolder;
+        }
+        th {
+            /*表头*/
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 黑体;
+        }
+    </style>
+</head>
+<body>
+    <h1>演唱会售票记录（顾客信息）</h1>
+    <a th:href="@{/index/sell-ticket}">返回主页&emsp;&emsp;</a>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>身份证号</th>
+                <th>演出名称</th>
+                <th>数量</th>
+                <th>金额</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr th:each="customers : ${customers}">
+                <td th:text="${customers.id}"></td>
+                <td th:text="${customers.name}"></td>
+                <td th:text="${customers.idCard}"></td>
+                <td th:text="${customers.showName}"></td>
+                <td th:text="${customers.quantity}"></td>
+                <td th:text="${customers.amount}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+</body>
+</html>

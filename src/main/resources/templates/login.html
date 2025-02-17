@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <style>
+    body {
+      background-image: url("/images/back.jpg");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 100px;
+      font-size: 50px;
+      font-family: 字魂4108号-萌兔趣味体;
+      font-weight: lighter;
+    }
+    p {
+      text-align: center;
+      font-size: 30px;
+      font-family: 华文新魏;
+    }
+    table,th,td {
+      margin: auto;
+      border: none;
+      padding: 10px;
+      font-size: 20px;
+      font-family: 宋体;
+      font-weight: bolder;
+    }
+    input {
+      padding: 6px;
+      background-color: transparent;
+      border-radius: 5px;
+      border: 1px solid black;
+      font-size: 16px;
+      font-family: 宋体;
+      font-weight: bolder;
+    }
+    button {
+      border-radius: 6px;
+      background-color: transparent;
+      transition-duration: 0.5s;
+      display: block;
+      margin: auto;
+      margin-top: 40px;
+      font-size: 20px;
+      padding: 7px;
+    }
+    button:hover {
+      background-color: aqua;
+
+    }
+  </style>
+</head>
+<body>
+  <h2>欢迎使用演唱会票务信息管理平台</h2>
+  <p>请登录！</p>
+  <form action="/login" method="post">
+    <table>
+      <tr>
+        <td><label for="username">用户名:</label></td>
+        <td><input type="text" id="username" name="username" required/></td>
+      </tr>
+
+      <tr>
+        <td><label for="password">密码:</label></td>
+        <td><input type="password" id="password" name="password" required/></td>
+      </tr>
+
+      <tr>
+        <td><button onclick="window.location.href='/add-user'">&emsp;&emsp;注册&emsp;&emsp;</button></td>
+        <td><button type="submit">&emsp;&emsp;登录&emsp;&emsp;</button></td>
+      </tr>
+    </table>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>票品录入</title>
+    <style>
+        body {
+            background-image: url("/images/back.jpg");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            text-align: center;
+            font-family: 字魂17号-萌趣果冻体;
+            font-size: 55px;
+        }
+        a {
+            text-decoration: none;
+            color: blueviolet;
+            display: block;
+            text-align: right;
+            font-weight: bolder;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+        table,th,td {
+            margin: auto;
+            border: none;
+            padding: 10px;
+            font-size: 20px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        input {
+            padding: 6px;
+            background-color: transparent;
+            border-radius: 5px;
+            border: 1px solid black;
+            font-size: 16px;
+            font-family: 宋体;
+            font-weight: bolder;
+        }
+        button {
+            border-radius: 6px;
+            background-color: transparent;
+            transition-duration: 0.5s;
+            display: block;
+            margin: auto;
+            margin-top: 60px;
+            font-size: 20px;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: aqua;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>票品录入</h1>
+    <h4><a th:href="@{/index/show-list}">取消录入&emsp;&emsp;</a></h4>
+    <form th:action="@{/add}" method="post" th:object="${home}">
+
+        <!-- 序号
+
+                将序号设置为主键，为int类型，自动增长，所以无需输入
+
+            <label for="id">序号:</label>
+            <input type="text" id="id" th:field="*{id}" required/>
+            <br>
+        -->
+
+        <table>
+            <!-- 演出名称 -->
+            <tr>
+                <td><label for="showName">演出名称:</label></td>
+                <td><input type="text" id="showName" th:field="*{showName}"  required/></td>
+            </tr>
+
+            <!-- 主要演职人员 -->
+            <tr>
+                <td><label for="performers">主要演职人员:</label></td>
+                <td><input type="text" id="performers" th:field="*{performers}" required/></td>
+            </tr>
+
+            <!-- 演出时间 -->
+            <tr>
+                <td><label for="showTime">演出时间:</label></td>
+                <td><input type="text" id="showTime" th:field="*{showTime}" required/></td>
+            </tr>
+
+            <!-- 总票数 -->
+            <tr>
+                <td><label for="totalTickets">总票数:</label></td>
+                <td><input type="text" id="totalTickets" th:field="*{totalTickets}"  required/></td>
+            </tr>
+
+            <!-- 已售 -->
+            <tr>
+                <td><label for="soldTickets">已售:</label></td>
+                <td><input type="text" id="soldTickets" th:field="*{soldTickets}" required/></td>
+            </tr>
+
+            <!-- 余票 -->
+            <tr>
+                <td><label for="remainingTickets">余票:</label></td>
+                <td><input type="text" id="remainingTickets" th:field="*{remainingTickets}" required/></td>
+            </tr>
+
+            <!-- 价格 -->
+            <tr>
+                <td><label for="price">价格:</label></td>
+                <td><input type="text" id="price" th:field="*{price}" required/></td>
+            </tr>
+
+        </table>
+
+
+        <button type="submit">&emsp;&emsp;录入&emsp;&emsp;</button>
+    </form>
+</body>
+</html>
